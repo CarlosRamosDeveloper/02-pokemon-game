@@ -4,12 +4,11 @@ Esto es un proyecto de un curso de Vue de fernando herrera con algunas modificac
 
 ## Mejoras aplicadas
 
-Se ha agregado dockerización al proyecto, para hacer que no sean necesarias instalaciones para ejecutar el proyecto
+- Se ha agregado dockerización al proyecto, para hacer que no sean necesarias en local
+- Se ha agregado un .npmrc para incrementar la seguridad del repositorio  
+- Se ha instalado pnpm en el contenedor para incrementar la seguridad del repositorio
 
 |Entorno|Comando|url|
 |-|-|-|
 |dev|docker compose --profile dev up|<http://localhost:8191/>|
 |prod|docker compose --profile prod up|<http://localhost:8091/>|
-
-Se ha agregado un .npmrc para incrementar la seguridad del repositorio  
-Se ha instalado pnpm en el contenedor para incrementar la seguridad del repositorio
