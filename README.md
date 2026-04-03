@@ -11,5 +11,5 @@ Se ha agregado dockerización al proyecto, para hacer que no sean necesarias ins
 |dev|docker compose --profile dev up|<http://localhost:8191/>|
 |prod|docker compose --profile prod up|<http://localhost:8091/>|
 
-Se ha agregado un .npmrc para incrementar la seguridad del repositorio
+Se ha agregado un .npmrc para incrementar la seguridad del repositorio  
 Se ha instalado pnpm en el contenedor para incrementar la seguridad del repositorio
