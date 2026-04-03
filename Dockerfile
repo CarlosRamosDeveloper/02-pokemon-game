@@ -1,24 +1,17 @@
 # Build stage
-FROM node:lts-alpine AS build
+FROM node:22-alpine AS build
 WORKDIR /app
 
-# Copiar package.json primero
-COPY package*.json ./
-
-# Instalar pnpm globalmente
 RUN npm install -g pnpm
 
-# Instalar dependencias
-RUN pnpm install
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
 
-# Copiar todo el proyecto
 COPY . .
-
-# Build de producción de Vite
 RUN pnpm build
 
 # Runtime stage
-FROM node:lts-alpine
+FROM node:22-alpine
 WORKDIR /app
 
 RUN npm install -g http-server
