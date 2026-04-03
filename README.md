@@ -4,7 +4,7 @@ Esto es un proyecto de un curso de Vue de fernando herrera con algunas modificac
 
 ## Mejoras aplicadas
 
-- Se ha agregado dockerización al proyecto, para hacer que no sean necesarias en local
+- Se ha agregado dockerización al proyecto, para hacer que no sean necesarias instalaciones en local
 - Se ha agregado un .npmrc para incrementar la seguridad del repositorio  
 - Se ha instalado pnpm en el contenedor para incrementar la seguridad del repositorio
 
