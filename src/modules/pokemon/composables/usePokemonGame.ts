@@ -1,14 +1,21 @@
-import { ref } from "vue"
-import { GameStatus } from "../interfaces"
+import { onMounted, ref } from 'vue';
+import { GameStatus, type PokemonListResponse } from '../interfaces';
+import { pokemonApi } from '../api/pokemonApi';
 
 export const usePokemonGame = () => {
-    const gameStatus = ref<GameStatus>(GameStatus.Playing)
+  const gameStatus = ref<GameStatus>(GameStatus.Playing);
 
-    const getPokemon = () => {
-        
-    }
+  const getPokemon = async () => {
+    const response = await pokemonApi.get<PokemonListResponse>('/?limit=151');
 
-    return {
-        gameStatus
-    }
-}
+    console.log(response.data);
+  };
+
+  onMounted(() => {
+    getPokemon();
+  });
+
+  return {
+    gameStatus,
+  };
+};

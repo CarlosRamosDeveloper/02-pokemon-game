@@ -17,6 +17,11 @@
 <script setup lang="ts">
 import GameOptions from '../components/GameOptions.vue';
 import PokemonPicture from '../components/PokemonPicture.vue';
+import { usePokemonGame } from '../composables/usePokemonGame';
+
+const { gameStatus } = usePokemonGame()
+
+console.log(gameStatus)
 
 </script>
 
