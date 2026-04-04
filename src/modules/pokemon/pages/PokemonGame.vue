@@ -10,6 +10,16 @@
   <section v-else class="flex flex-col justify-center items-center w-screen h-screen">
     <h1 class="m-5">¿Quien es este Pokémon?</h1>
 
+    <div class="h-20">
+      <button
+        v-if="gameStatus !== GameStatus.Playing"
+        @click="getPokemonOptions(5)"
+        class="bg-orange-400 text-white p-2 rounded-xl hover:bg-orange-600 transition-all"
+      >
+        Siguiente ronda
+      </button>
+    </div>
+
     <PokemonPicture
       v-if="hiddenPokemon"
       :pokemon-id="hiddenPokemon.id"
@@ -38,6 +48,7 @@ const {
   isLoading,
   pokemonOptions: options,
   checkAnswer,
+  getPokemonOptions,
 } = usePokemonGame();
 </script>
 
