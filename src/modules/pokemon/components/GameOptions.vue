@@ -1,19 +1,25 @@
 <template>
-    <section class="mt-5">
-        <ul>
-            <li class="pokemon-option">Pokémon 1</li>
-            <li class="pokemon-option">Pokémon 2</li>
-            <li class="pokemon-option">Pokémon 3</li>
-            <li class="pokemon-option">Pokémon 4</li>
-            <li class="pokemon-option">Pokémon 5</li>
-        </ul>
-    </section>
+  <section class="mt-5">
+    <button class="pokemon-option capitalize" v-for="{ name, id } in options" :key="id"
+    @click="$emit('selectedOption', id)"
+    >
+      {{ name }}
+    </button>
+  </section>
 </template>
 
 <script setup lang="ts">
+import type { Pokemon } from '../interfaces';
 
+interface Props {
+  options: Pokemon[];
+}
+
+defineProps<Props>();
+
+defineEmits<{
+  selectedOption: [id: number];
+}>();
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
