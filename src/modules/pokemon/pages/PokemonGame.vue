@@ -39,8 +39,6 @@ const {
   pokemonOptions: options,
   checkAnswer,
 } = usePokemonGame();
-
-console.log(gameStatus);
 </script>
 
 <style scoped></style>
