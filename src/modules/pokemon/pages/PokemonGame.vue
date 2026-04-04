@@ -6,6 +6,7 @@
 
   <section v-else class="flex flex-col justify-center items-center w-screen h-screen">
     <h1 class="m-5">¿Quien es este Pokémon?</h1>
+    <h3>{{ hiddenPokemon?.name }}</h3>
 
     <PokemonPicture />
 
@@ -19,7 +20,7 @@ import GameOptions from '../components/GameOptions.vue';
 import PokemonPicture from '../components/PokemonPicture.vue';
 import { usePokemonGame } from '../composables/usePokemonGame';
 
-const { gameStatus, isLoading } = usePokemonGame()
+const { hiddenPokemon, gameStatus, isLoading } = usePokemonGame()
 
 console.log(gameStatus)
 
