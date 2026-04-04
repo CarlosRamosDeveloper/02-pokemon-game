@@ -8,11 +8,10 @@
   </section>
 
   <section v-else class="flex flex-col justify-center items-center w-screen h-screen">
-    <h1 class="m-5">¿Quien es este Pokémon?</h1>
+    <h1 v-if="gameStatus===GameStatus.Playing" class="m-5 h-20">¿Quien es este Pokémon?</h1>
 
-    <div class="h-20">
-      <button
-        v-if="gameStatus !== GameStatus.Playing"
+    <div class="m-5 h-20" v-if="gameStatus !== GameStatus.Playing">
+      <button        
         @click="getPokemonOptions(5)"
         class="bg-orange-400 text-white p-2 rounded-xl hover:bg-orange-600 transition-all"
       >
