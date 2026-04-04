@@ -1,10 +1,10 @@
 <template>
-  <section v-if="false" class="flex flex-col justify-center items-center w-screen h-screen">
+  <section v-if="isLoading" class="flex flex-col justify-center items-center w-screen h-screen">
     <h1 class="text-3xl">Espere, por favor...</h1>
     <h3 class="animate-pulse">Cargando...</h3>
   </section>
 
-  <section class="flex flex-col justify-center items-center w-screen h-screen">
+  <section v-else class="flex flex-col justify-center items-center w-screen h-screen">
     <h1 class="m-5">¿Quien es este Pokémon?</h1>
 
     <PokemonPicture />
@@ -19,7 +19,7 @@ import GameOptions from '../components/GameOptions.vue';
 import PokemonPicture from '../components/PokemonPicture.vue';
 import { usePokemonGame } from '../composables/usePokemonGame';
 
-const { gameStatus } = usePokemonGame()
+const { gameStatus, isLoading } = usePokemonGame()
 
 console.log(gameStatus)
 
