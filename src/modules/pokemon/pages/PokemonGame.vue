@@ -9,14 +9,20 @@
 
   <section v-else class="flex flex-col justify-center items-center w-screen h-screen">
     <h1 class="m-5">¿Quien es este Pokémon?</h1>
-  
+
     <PokemonPicture
       v-if="hiddenPokemon"
       :pokemon-id="hiddenPokemon.id"
       :show-pokemon="gameStatus !== GameStatus.Playing"
     />
 
-    <GameOptions :options="options" @selected-option="checkAnswer"/>
+    <GameOptions
+      v-if="hiddenPokemon"
+      :options="options"
+      @selected-option="checkAnswer"
+      :areButtonsAvailable="gameStatus !== GameStatus.Playing"
+      :hidden-pokemon-id="hiddenPokemon.id"
+    />
   </section>
 </template>
 
@@ -26,7 +32,13 @@ import PokemonPicture from '../components/PokemonPicture.vue';
 import { usePokemonGame } from '../composables/usePokemonGame';
 import { GameStatus } from '../interfaces';
 
-const { hiddenPokemon, gameStatus, isLoading, pokemonOptions: options, checkAnswer } = usePokemonGame();
+const {
+  hiddenPokemon,
+  gameStatus,
+  isLoading,
+  pokemonOptions: options,
+  checkAnswer,
+} = usePokemonGame();
 
 console.log(gameStatus);
 </script>

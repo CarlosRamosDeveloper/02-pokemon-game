@@ -6,10 +6,10 @@
   }
 
   .correct {
-    @apply bg-blue-500 text-white
+    @apply bg-blue-500 text-white;
   }
   .incorrect {
-    @apply bg-red-300 opacity-70
+    @apply bg-red-300 opacity-70;
   }
 }
 
