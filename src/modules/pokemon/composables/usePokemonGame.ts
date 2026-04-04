@@ -1,21 +1,50 @@
-import { onMounted, ref } from 'vue';
-import { GameStatus, type PokemonListResponse } from '../interfaces';
+import { computed, onMounted, ref } from 'vue';
+import { GameStatus, type Pokemon, type PokemonListResponse } from '../interfaces';
 import { pokemonApi } from '../api/pokemonApi';
 
 export const usePokemonGame = () => {
   const gameStatus = ref<GameStatus>(GameStatus.Playing);
+  const pokemonList = ref<Pokemon[]>([]);
+  const pokemonOptions = ref<Pokemon[]>([]);
 
-  const getPokemon = async () => {
+  const isLoading = computed(() => pokemonList.value.length === 0);
+
+  const getPokemon = async (): Promise<Pokemon[]> => {
     const response = await pokemonApi.get<PokemonListResponse>('/?limit=151');
 
-    console.log(response.data);
+    const pokeArray: Pokemon[] = response.data.results.map((pokemon) => {
+      const urlParts = pokemon.url.split('/');
+      const pokemonId = urlParts.at(-2) ?? '0';
+
+      return {
+        name: pokemon.name,
+        id: +pokemonId,
+      };
+    });
+
+    return pokeArray.sort(() => Math.random() - 0.5);
   };
 
-  onMounted(() => {
-    getPokemon();
+  const getPokemonOptions = (pokemonQuantity: number = 5) => {
+    gameStatus.value = GameStatus.Playing;
+    pokemonOptions.value = pokemonList.value.slice(0, pokemonQuantity);
+    pokemonList.value = pokemonList.value.slice(pokemonQuantity);
+  };
+
+  onMounted(async () => {
+    await new Promise((r) => setTimeout(r, 1000));
+
+    pokemonList.value = await getPokemon();
+    getPokemonOptions();
+
+    console.log({ pokemonList });
   });
 
   return {
-    gameStatus,
+    gameStatus: gameStatus,
+    isLoading: isLoading,
+    pokemonOptions: pokemonOptions,
+
+    getPokemonOptions: getPokemonOptions,
   };
 };
