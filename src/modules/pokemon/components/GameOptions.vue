@@ -2,11 +2,10 @@
   <section class="mt-5">
     <button
       :class="[
-        'pokemon-option capitalize :disabled:shadow-none :disabled:bg-gray-100',
-        {
-          correct: id === hiddenPokemonId && areButtonsAvailable,
-          incorrect: id !== hiddenPokemonId && areButtonsAvailable,
-        },
+        buttonStyle.base,
+        !areButtonsAvailable && buttonStyle.idle,
+        areButtonsAvailable &&
+          (id === hiddenPokemonId ? buttonStyle.correct : buttonStyle.incorrect),
       ]"
       v-for="{ name, id } in options"
       :key="id"
@@ -16,6 +15,9 @@
       {{ name }}
     </button>
   </section>
+  <div class="bg-blue-500 text-white p-4">
+  TEST AZUL
+</div>
 </template>
 
 <script setup lang="ts">
@@ -32,6 +34,13 @@ defineProps<Props>();
 defineEmits<{
   selectedOption: [id: number];
 }>();
+
+const buttonStyle = {
+  base: 'shadow-md rounded-lg p-3 m-2 cursor-pointer w-40 text-center transition-all capitalize disabled:shadow-none disabled:bg-gray-100',
+  idle: 'bg-white hover:bg-gray-100',
+  correct: 'bg-blue-500! text-white',
+  incorrect: 'bg-red-300! opacity-70',
+};
 </script>
 
 <style scoped></style>
